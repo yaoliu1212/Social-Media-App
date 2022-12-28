@@ -1,7 +1,8 @@
 const postsReducers = (posts = [], action) => {
     switch (action.type) {
         case 'FETCH_ALL':
-            return posts;
+            // console.log("payload: " + action.payload)
+            return action.payload[0];
         case 'CREATE':
             return posts;
         default:
@@ -9,4 +10,4 @@ const postsReducers = (posts = [], action) => {
     }
 }
 
-export default postsReducers;
+export { postsReducers };
