@@ -1,4 +1,5 @@
 import * as api from '../api';
+import { CREATE, UPDATE, DELETE, FETCH_ALL, LIKE } from '../actionTypes'
 
 // Action Creators: a function that returns an async func
 export const getPosts = () => async (dispatch) => {
@@ -6,7 +7,7 @@ export const getPosts = () => async (dispatch) => {
         // first get response from api, response always has data
         const { data } = await api.fetchPosts();
         // console.log("data: " + data)
-        dispatch({ type: 'FETCH_ALL', payload: data });
+        dispatch({ type: FETCH_ALL, payload: data });
     } catch (error) {
         // console.log("getting");
         console.log(error.message);
@@ -16,7 +17,7 @@ export const getPosts = () => async (dispatch) => {
 export const createPost = (post) => async (dispatch) => {
     try {
         const { data } = await api.createPost(post);
-        dispatch({ type: 'CREATE', payload: data })
+        dispatch({ type: CREATE, payload: data })
     } catch (error) {
         console.log(error.message);
     }
@@ -25,7 +26,7 @@ export const createPost = (post) => async (dispatch) => {
 export const updatePost = (currentId, updatedPost) => async (dispatch) => {
     try {
         const { data } = await api.updatePost(currentId, updatedPost);
-        dispatch({ type: 'UPDATE', payload: data })
+        dispatch({ type: UPDATE, payload: data })
     } catch (error) {
         // console.log("updating");
         console.log(error);
@@ -35,7 +36,7 @@ export const updatePost = (currentId, updatedPost) => async (dispatch) => {
 export const deletePost = (currentId) => async (dispatch) => {
     try {
         await api.deletePost(currentId);
-        dispatch({ type: 'DELETE', payload: currentId });
+        dispatch({ type: DELETE, payload: currentId });
     } catch (error) {
         console.log(error.message);
     }
@@ -46,7 +47,7 @@ export const likePost = (currentId) => async (dispatch) => {
         const { data } = await api.likePost(currentId);
         // console.log("client side:");
         // console.log(data);
-        dispatch({ type: 'Like', payload: data });
+        dispatch({ type: LIKE, payload: data });
     } catch (error) {
         console.log(error.message);
     }
