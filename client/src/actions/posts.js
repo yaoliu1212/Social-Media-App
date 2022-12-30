@@ -40,3 +40,14 @@ export const deletePost = (currentId) => async (dispatch) => {
         console.log(error.message);
     }
 }
+
+export const likePost = (currentId) => async (dispatch) => {
+    try {
+        const { data } = await api.likePost(currentId);
+        // console.log("client side:");
+        // console.log(data);
+        dispatch({ type: 'Like', payload: data });
+    } catch (error) {
+        console.log(error.message);
+    }
+}
