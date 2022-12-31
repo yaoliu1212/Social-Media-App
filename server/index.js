@@ -16,6 +16,9 @@ app.use(cors());
 
 // connect route to app
 app.use('/posts', postRoutes);
+app.use('/', (req, res) => {
+    res.send("This is deployed API for social media application");
+});
 
 //connect server application with database (mongodb)
 
